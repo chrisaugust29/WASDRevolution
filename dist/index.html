@@ -3,14 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../src/assets/stylesheets/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="../src/assets/stylesheets/style.css"/>
     <title>WASD Revolution</title>
-    <script type="application/javascript" src="./main.js"></script>
-    <script src="jsRev.js" type="text/javascript"></script>
+    <!-- <script src="./bundle.js"></script> -->
+        <script type="application/javascript" src="./bundle.js"></script>
+    
 </head>
 <body>
-    <canvas id = "frontscreen"></canvas>
-    <h1>test</h1>
+    <span id="firstModal">
+        <div id="startModal" class="directions">
+            <h2>WASD Revolution!</h2>
+            <p>Use the WASD keys to play the directions of the arrows corresponds to the direction arrows are pointing.</p>
+            <button id="startButton">Start</button>
+        </div>
+        <div id="lastModal" class="directions">
+            <h2>Great Moves!</h2>
+            <button id="restartButton">Restart</button>
+        </div>
+    </span>
+    <div class="title">WASD Revolution</div>
+    <section class="gamecanvas">
+        <div class="source">
+            <a href="https://github.com/chrisaugust29/WASDRevolution"><img src="../src/assets/img/github.png"></a>
+            <a href="https://www.linkedin.com/in/christopher-low-99a557a3"><img src="../src/assets/img/linkedin.png"></a>
+        </div>
+    
+        <div id="score">Score: 0</div>
+        <canvas id="game-canvas" width="800" height="800"></canvas>
+    </section>
+    <div id="directionModal">
+        <h2>Directions</h2>
+        <ul>
+            <li>Play using the WASD Keys which acts as directional keys</li>
+            <li>Tap the corresponding key as the moving arrows reach static arrows </li>
+            <li>A score will be displayed of total points recieved.</li>
+            <li>Each missed note you will lose Health and game is over when you reach 0</li>
+        </ul>
+        <button id="buttonPlay">Lets Dance!</button>
+    </div>
+    <div class="sArrows">
+        <img id="left" src="../src/assets/img/sLeft.png">
+        <img id="down" src="../src/assets/img/sDown.png">
+        <img id="up" src="../src/assets/img/sUp.png">
+        <img id="right" src="../src/assets/img/sRight.png">
+    </div>
 </body>
+    <script src="../src/assets/class/arrows.js" type="text/javascript"></script>
+    <script src="../src/index.js"></script>
+
 </html>
