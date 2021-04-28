@@ -22,37 +22,54 @@ buttonPlay.onclick = startGame;
 // pauseIcon.onclick = pauseGame;
 // document.getElementById("restartIcon").onclick = gameRestart;
 // document.getElementById("mainSong").onended = songEnd;
-// document.addEventListener("keydown", handleKeyPress);
-// document.addEventListener("keyup", handleKeyPress);
+document.addEventListener("keydown", handleKeyPress);
+document.addEventListener("keyup", handleKeyPress);
+
+
+function handleKeyPress(e) {
+  switch (e.keyCode) {
+    case 37:
+      leftPressed = !a;
+      break;
+    case 38:
+      upPressed = !w;
+      break;
+    case 39:
+      rightPressed = !d;
+      break;
+    case 40:
+      downPressed = !s;
+      break;
+  }
+}
+
 
 function staticShowArrows() {
-  let sLeftImg = document.getElementById("left");
-  let leftPos =  (canvas.width /8 ) 
-  console.log(leftPos)
-  let sDownImg = document.getElementById("down");
-  let downPos = leftPos + (canvas.width / 4);
-//   let sUpImg = document.getElementById("up");
-//   let upPos = 4.0 * (canvas.width / 12);
-//   let sRightImg = document.getElementById("right");
-//   let rightPos = 5.25 * (canvas.width / 12);
-
-  let pic;
-  let sx;
-  let sy = 15;
-  let width = 200;
-  let height = 150;
-
-  ["left", "down", "up", "right"].forEach(dir => {
+    let pic;
+    let posx;
+    let posy = 15;
+    let width = 250;
+    let height = 175;
+    let sLeftImg = document.getElementById("left");
+    let leftPos =  (canvas.width /8 -50) 
+    let sDownImg = document.getElementById("down");
+    let downPos = (canvas.width /2 - 200)
+    let sUpImg = document.getElementById("up");
+    let upPos = (canvas.width /2 -50) 
+    let sRightImg = document.getElementById("right");
+    let rightPos = (canvas.width/2 +100 );
+   
+    ["left", "down", "up", "right"].forEach(dir => {
     switch (dir) {
-      case "left": pic = sLeftImg; sx = leftPos;
+      case "left": pic = sLeftImg; posx = leftPos;
         break;
-      case "down": pic= sDownImg; sx = downPos;
+      case "down": pic= sDownImg; posx = downPos;
         break;
-      case "up": pic = sUpImg;  sx = upPos;
+      case "up": pic = sUpImg;  posx = upPos;
         break;
-      case "right": pic = sRightImg; sx = rightPos;
+      case "right": pic = sRightImg; posx = rightPos;
     }
-    ctx.drawImage(pic, sx, sy, width, height,  );
+    ctx.drawImage(pic, posx, posy, width, height,);
   });
 }
 
@@ -64,7 +81,8 @@ function arrowDraw() {
       let nextArrow = arrowNew();
       allArrows.push(nextArrow);
       allArrows[allArrows.length - 1].displayArrow();
-      allArrows.forEach(arrow => (arrow.dy = -4));
+      allArrows.forEach(arrow => (arrow.dy
+         = -4));
       let time;
       if (allArrows.length <= 20) {
         time = 600;

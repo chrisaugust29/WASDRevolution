@@ -40,22 +40,22 @@ class Arrows {
     this.newDImg = new Image();
     switch (direction) {
       case "left":
-        this.newDImg.src = "../dLeft.png";
+        this.newDImg.src = "../img/dLeft.png";
         this.shift = 0;
         this.x = 84.375;
         break;
       case "down":
-        this.newDImg.src = "../dDown.png";;
+        this.newDImg.src = "../img/dDown.png";;
         this.shift = 300;
         this.x = 154.6875;
         break;
       case "up":
-        this.newDImg.src = "../dUp.png";;
+        this.newDImg.src = "../img/dUp.png";;
         this.shift = 600;
         this.x = 225;
         break;
       case "right":
-        this.newDImg.src = "../dRight.png";;
+        this.newDImg.src = "../img/dRight.png";;
         this.shift = 900;
         this.x = 295.3125;
         break;
