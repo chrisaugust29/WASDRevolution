@@ -7,6 +7,7 @@ let directionModal = document.getElementById("directionModal");
 let buttonPlay = document.getElementById("buttonPlay");
 let showScore = document.getElementById("score");
 let showHealth = document.getElementById("health");
+let hitMsg = document.getElementById("hit-message")
 let allArrows = [];
 let health = 20;
 let score = 0;
@@ -48,6 +49,10 @@ function draw() {
                 health -= 5
                 allArrows[i].scores = false;
                 allArrows[i].healths = false;
+                hitMsg.className = "great";
+                setTimeout(() => {hitMsg.className = ""; }, 500);
+                hitMsg.innerText = "5 DMG NICE!";
+                setTimeout(() => {hitMsg.innerText = ""; }, 500);
             }
                 showScore.innerHTML = "Score: " + `${score}`;
                 showHealth.innerHTML = "Enemy's Health:" + `${health}`;
@@ -65,6 +70,10 @@ function draw() {
                 health -= 5;
                 allArrows[i].scores = false;
                 allArrows[i].healths = false;
+                hitMsg.className = "great";
+                setTimeout(() => {hitMsg.className = ""; }, 500);
+                hitMsg.innerText = "5 DMG NICE!";
+                setTimeout(() => {hitMsg.innerText = ""; }, 500);
               } 
                 showScore.innerHTML = "Score: " + `${score}`;
                 showHealth.innerHTML = "Enemy's Health:" + `${health}`;
@@ -82,6 +91,10 @@ function draw() {
                 health -= 5;
                 allArrows[i].scores = false;
                 allArrows[i].healths = false;
+                hitMsg.className = "great";
+                setTimeout(() => {hitMsg.className = ""; }, 500);
+                hitMsg.innerText = "5 DMG NICE!";
+                setTimeout(() => {hitMsg.innerText = ""; }, 500);
                 }
                 showScore.innerHTML = "Score: " + `${score}`;
                 showHealth.innerHTML = "Enemy's Health:" + `${health}`;
@@ -99,6 +112,10 @@ function draw() {
                 health -= 5;
                 allArrows[i].scores = false;
                 allArrows[i].healths = false;
+                hitMsg.className = "great";
+                setTimeout(() => {hitMsg.className = ""; }, 500);
+                hitMsg.innerText = "5 DMG NICE!";
+                setTimeout(() => {hitMsg.innerText = ""; }, 500);
                 }
                 showScore.innerHTML = "Score: " + `${score}`;
                 showHealth.innerHTML = "Enemy's Health:" + `${health}`;
