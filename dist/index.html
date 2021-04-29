@@ -5,40 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../src/assets/stylesheets/reset.css"/>
     <link rel="stylesheet" type="text/css" href="../src/assets/stylesheets/style.css"/>
-    <title>WASD Revolution</title>
     <!-- <script src="./bundle.js"></script> -->
         <!-- <script type="application/javascript" src="./bundle.js"></script> -->
     
 </head>
 <body>
     <span id="firstModal">
-        <div id="startModal" class="directions">
+        <div id="startModal" class="mdirections">
             <h2>WASD Revolution!</h2>
             <p>Use the WASD keys to play the directions of the arrows corresponds to the direction arrows are pointing.</p>
-            <button id="startButton">Start</button>
+            <button id="startButton">How to Play?</button>
         </div>
-        <div id="lastModal" class="directions">
+        <div id="lastModal" class="mdirections">
             <h2>Great Moves!</h2>
             <button id="restartButton">Restart</button>
         </div>
     </span>
     <div class="title">WASD Revolution</div>
     <section class="gamecanvas">
+        <canvas id="game-canvas" width="800" height="750"></canvas>
+        <div id="score">Score: 0</div>
         <div class="source">
             <a href="https://github.com/chrisaugust29/WASDRevolution"><img src="../src/assets/img/github.png"></a>
             <a href="https://www.linkedin.com/in/christopher-low-99a557a3"><img src="../src/assets/img/linkedin.png"></a>
         </div>
     
-        <div id="score">Score: 0</div>
-        <canvas id="game-canvas" width="800" height="832"></canvas>
+        
+        
+        
     </section>
     <div id="directionModal">
         <h2>Directions</h2>
         <ul>
-            <li>Play using the WASD Keys which acts as directional keys</li>
-            <li>Tap the corresponding key as the moving arrows reach static arrows </li>
-            <li>A score will be displayed of total scores recieved.</li>
-            <li>Each missed note you will lose Health and game is over when you reach 0</li>
+            <li>-Play using the WASD Keys which acts as directional keys</li>
+            <li>-Tap the corresponding key as the moving arrows reach static arrows </li>
+            <li>-A score will be displayed of total scores recieved.</li>
+            <li>-Each missed note you will lose Health and game is over when you reach 0</li>
         </ul>
         <button id="buttonPlay">Lets Dance!</button>
     </div>

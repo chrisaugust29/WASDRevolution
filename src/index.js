@@ -23,9 +23,9 @@ window.onload = staticShowArrows;
 buttonPlay.onclick = startGame;
 // document.getElementById("restartButton").onclick = playAgain;
 // pauseIcon.onclick = pauseGame;
-// document.getElementById("restartIcon").onclick = gameRestart;
+document.getElementById("restartButton").onclick = restartDDr;
 // document.getElementById("mainSong").onended = songEnd
-let dirSty = window.getComputedStyle(directionModal).getPropertyValue("display");
+let styleDirection = window.getComputedStyle(directionModal).getPropertyValue("display");
 document.getElementById("startButton").onclick = displayDirections;
 document.addEventListener("keydown", handleKeyPress);
 document.addEventListener("keyup", handleKeyPress);
@@ -44,7 +44,6 @@ function draw() {
             ) {
             if (allArrows[i].scores === true) {
                 score += 1;
-                health -=1;
                 allArrows[i].scores = false;
             }
                 showScore.innerHTML = "Score: " + `${score}`;
@@ -60,6 +59,8 @@ function draw() {
             if (allArrows[i].scores === true ) {
                 score += 1;
                 allArrows[i].scores = false;
+                } else {
+                  health -= 1
                 }
                 showScore.innerHTML = "Score: " + `${score}`;
                 allArrows[i].newDImg.src = "";
@@ -196,8 +197,12 @@ function arrowNew() {
 
 function startGame() {
   firstModal.style.visibility = "hidden";
-//   playButton.style.display = "none";
-//   directions.style.zIndex = 0;
+  buttonPlay.style.display = "none";
+  directionModal.style.zIndex = 0;
+  directionModal.style.display = "none"
+  if (styleDirection === "none") {
+    directionModal.style.display = "none";
+  }
   arrowDraw();
   setInterval(draw, 1);
 }
@@ -205,10 +210,12 @@ function startGame() {
 function displayDirections() {
   startModal.style.display = "none";
   directionModal.style.zIndex = 10;
-  if (dirSty === "none") {
+  if (styleDirection === "none") {
     directionModal.style.display = "flex";
   }
 };
+
+
 
 function restartDDr() {
   restart();
@@ -221,15 +228,14 @@ function restartDDr() {
 }
 
 function restart() {
-  clearTimeout(arrowDrawTimeout);
+  clearTimeout(timeout);
   restart = true;
   pause = false;
-  clearNumbers();
-  mainSong.pause();
-  mainSong.currentTime = 0;
-  arrowArray = arrowArray.map(arrow => {
+  score = 0;
+  scoreDisplay.innerHTML = "Score: " + `${score}`;
+  allArrows = allArrows.map(arrow => {
     arrow.y = canvas.height;
     arrow.dy = 0;
   });
-  arrowArray = [];
+  allArrows = [];
 }
