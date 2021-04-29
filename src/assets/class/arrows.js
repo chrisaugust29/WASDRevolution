@@ -1,64 +1,64 @@
-class Arrows {
+class Arrowd {
 	constructor(dir) {
-		this.width = 80;
-		this.height = 80;
+		// const canvas = document.getElementById("game-canvas");
+		// const ctx = canvas.getContext("2d");
+		this.dir = dir;
+		this.width = 250;
+		this.height = 175;
 		this.y = 700;
 		this.dy = 0;
-		this.dir = dir;
 		this.scores = true;
 		this.displayArrow = this.displayArrow.bind(this);
 		this.arrowDirection(dir);
+	// 	this.ctx = document.getElementById("game-canvas").getContext("2d")
 	}
 
-	displayArrow() {
-    let fps = 0;
-    const move = () => {
-      fps++;
-      ctx.drawImage(
-        this.newDImg,
-        this.shift,
-        0,
-        this.width,
-        this.height,
-        this.x,
-        this.y,
-        this.width,
-        this.height
-      );
-      this.y += this.dy;
-      if (fps === 20) {
-        this.shift += this.width;
-        fps = 0;
-        this.shift = this.shift === 1200 ? 0 : this.shift;
-      }
-      requestAnimationFrame(move);
-    };
-    move();
-  }
 
    arrowDirection(dir) {
     this.newDImg = new Image();
-    switch (direction) {
+    switch (dir) {
       case "left":
-        this.newDImg.src = "../img/dLeft.png";
-        this.shift = 0;
-        this.x = 84.375;
+		//   "../img/dLeft.png";
+        this.newDImg.src = "../src/assets/img/dLeft.png";
+        this.x = 50;
         break;
       case "down":
-        this.newDImg.src = "../img/dDown.png";;
-        this.shift = 300;
-        this.x = 154.6875;
+		//   "../img/dDown.png";
+        this.newDImg.src = "../src/assets/img/dDown.png";
+        this.x = 200;
         break;
       case "up":
-        this.newDImg.src = "../img/dUp.png";;
-        this.shift = 600;
-        this.x = 225;
+		//   "../src/assets/img/dUp.png";
+        this.newDImg.src = "../src/assets/img/dUp.png";
+        this.x = 350;
         break;
       case "right":
-        this.newDImg.src = "../img/dRight.png";;
-        this.shift = 900;
-        this.x = 295.3125;
+		//   "../src/assets/img/dRight.png";
+        this.newDImg.src = "../src/assets/img/dRight.png";
+        this.x = 500;
         break;
     }
+  }
+
+  	displayArrow() {
+		let fps = 0;
+		const moveArrows = () => {
+			fps++;
+			ctx.drawImage(
+				this.newDImg,
+				0,
+				0,
+				this.width,
+				this.height,
+				this.x + 25,
+				this.y,
+				this.width,
+				this.height
+			);
+			this.y += this.dy;
+			
+			requestAnimationFrame(moveArrows);
+		};
+			moveArrows();
   }
 }

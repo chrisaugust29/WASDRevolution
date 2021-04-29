@@ -1,11 +1,13 @@
-document.addEventListener("DOMContentLoaded", () => {
+
 const canvas = document.getElementById("game-canvas");
 const ctx = canvas.getContext("2d");
 let firstModal = document.getElementById("firstModal");
 let startModal = document.getElementById("startModal");
+let directionModal = document.getElementById("directionModal");
 let buttonPlay = document.getElementById("buttonPlay");
+let showScore = document.getElementById("score");
 let allArrows = [];
-let health = 0;
+let health = 50;
 let score = 0;
 let leftInput = false;
 let downInput = false;
@@ -14,31 +16,103 @@ let rightInput = false;
 let paused = false;
 let replay = false;
 let gameover = false;
+let timeout;
 
 window.onload = staticShowArrows;
-// document.getElementById("startButton").onclick = popupDirections;
+
 buttonPlay.onclick = startGame;
 // document.getElementById("restartButton").onclick = playAgain;
 // pauseIcon.onclick = pauseGame;
 // document.getElementById("restartIcon").onclick = gameRestart;
-// document.getElementById("mainSong").onended = songEnd;
+// document.getElementById("mainSong").onended = songEnd
+let dirSty = window.getComputedStyle(directionModal).getPropertyValue("display");
+document.getElementById("startButton").onclick = displayDirections;
 document.addEventListener("keydown", handleKeyPress);
 document.addEventListener("keyup", handleKeyPress);
 
 
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    staticShowArrows();
+
+    for (let i = 0; i < allArrows.length; i++) {
+        if (leftInput) {
+            if (
+                allArrows[i].x === 50 &&
+                allArrows[i].y < 15 &&
+                allArrows[i].y > 1
+            ) {
+            if (allArrows[i].scores === true) {
+                score += 1;
+                health -=1;
+                allArrows[i].scores = false;
+            }
+                showScore.innerHTML = "Score: " + `${score}`;
+                allArrows[i].newDImg.src = "";
+            }
+        }   
+        if (downInput) {
+            if (
+                allArrows[i].x === 200 &&
+                allArrows[i].y < 30 &&
+                allArrows[i].y > 1
+            ) {
+            if (allArrows[i].scores === true ) {
+                score += 1;
+                health -=1;
+                allArrows[i].scores = false;
+                }
+                showScore.innerHTML = "Score: " + `${score}`;
+                allArrows[i].newDImg.src = "";
+            }
+        }
+        if (upInput) {
+            if (
+                allArrows[i].x ===  350 &&
+                allArrows[i].y < 30 &&
+                allArrows[i].y > 1
+            ) {
+            if (allArrows[i].scores === true) {
+                score += 1;
+                health -=1;
+                allArrows[i].scores = false;
+                }
+                showScore.innerHTML = "Score: " + `${score}`;
+                allArrows[i].newDImg.src = "";
+             }   
+        }
+        if (rightInput) {
+            if (
+                allArrows[i].x === 500 &&
+                allArrows[i].y < 30 &&
+                allArrows[i].y > 1
+            ) {
+            if (allArrows[i].scores === true) {
+                score += 1;
+                health -=1;
+                allArrows[i].scores = false;
+                }
+                showScore.innerHTML = "Score: " + `${score}`;
+                allArrows[i].newDImg.src = "";
+             }
+        }
+    }
+}
+
 function handleKeyPress(e) {
+     console.log(e.key);
   switch (e.keyCode) {
-    case 37:
-      leftPressed = !a;
+      case 65:
+      leftInput = !leftInput;
       break;
-    case 38:
-      upPressed = !w;
+    case 87:
+      upInput = !upInput;
       break;
-    case 39:
-      rightPressed = !d;
+    case 68:
+      rightInput = !rightInput;
       break;
-    case 40:
-      downPressed = !s;
+    case 83:
+      downInput = !downInput;
       break;
   }
 }
@@ -78,49 +152,57 @@ function arrowDraw() {
     return;
   } else {
     if (!paused) {
-      let nextArrow = arrowNew();
-      allArrows.push(nextArrow);
+        console.log("help",allArrows.length)
+      let randomArrow = arrowNew();
+      allArrows.push(randomArrow);
       allArrows[allArrows.length - 1].displayArrow();
       allArrows.forEach(arrow => (arrow.dy
          = -4));
       let time;
-      if (allArrows.length <= 20) {
+      if (allArrows.length <= 15) {
         time = 600;
-      } else if (allArrows.length <= 40 && allArrows.length > 20) {
+      } else if (allArrows.length <= 30 && allArrows.length > 15) {
         time = Math.floor(Math.random() * (600 - 400 + 1)) + 400;
       } else {
         time = Math.floor(Math.random() * (600 - 250 + 1)) + 250;
       }
-      arrowDrawTimeout = setTimeout(arrowDraw, time);
+      timeout = setTimeout(arrowDraw, time);
     } else {
       for (let i = 0; i < allArrows.length; i++) {
         allArrows[i].dy = 0;
       }
-      arrowDrawTimeout = setTimeout(arrowDraw, 100);
+      timeout = setTimeout(arrowDraw, 100);
+    
     }
   }
 }
 
 function arrowNew() {
-  let randomNum = Math.round(Math.random() * 5) + 2;
+  let randomNum = Math.floor(Math.random() *4) + 1;
   switch (randomNum) {
     case 1:
-      return new Arrows("left");
+      return new Arrowd("left");
     case 2:
-      return new Arrows("down");
+      return new Arrowd("down");
     case 3:
-      return new Arrows("up");
+      return new Arrowd("up");
     case 4:
-      return new Arrows("right");
+      return new Arrowd("right");
   }
 }
 
 function startGame() {
   firstModal.style.visibility = "hidden";
 //   playButton.style.display = "none";
-  directions.style.zIndex = 0;
+//   directions.style.zIndex = 0;
   arrowDraw();
   setInterval(draw, 1);
 }
 
-});
+function displayDirections() {
+  startModal.style.display = "none";
+  directionModal.style.zIndex = 10;
+  if (dirSty === "none") {
+    directionModal.style.display = "flex";
+  }
+};
