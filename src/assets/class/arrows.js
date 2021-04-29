@@ -8,6 +8,7 @@ class Arrowd {
 		this.y = 700;
 		this.dy = 0;
 		this.scores = true;
+		this.healths = true;
 		this.displayArrow = this.displayArrow.bind(this);
 		this.arrowDirection(dir);
 	// 	this.ctx = document.getElementById("game-canvas").getContext("2d")

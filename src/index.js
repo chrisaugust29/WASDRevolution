@@ -6,6 +6,7 @@ let startModal = document.getElementById("startModal");
 let directionModal = document.getElementById("directionModal");
 let buttonPlay = document.getElementById("buttonPlay");
 let showScore = document.getElementById("score");
+let showHealth = document.getElementById("health");
 let allArrows = [];
 let health = 20;
 let score = 0;
@@ -42,11 +43,14 @@ function draw() {
                 allArrows[i].y < 15 &&
                 allArrows[i].y > 1
             ) {
-            if (allArrows[i].scores === true) {
-                score += 1;
+            if (allArrows[i].scores === true && allArrows[i].healths === true) {
+                score += 100;
+                health -= 5
                 allArrows[i].scores = false;
+                allArrows[i].healths = false;
             }
                 showScore.innerHTML = "Score: " + `${score}`;
+                showHealth.innerHTML = "Enemy's Health:" + `${health}`;
                 allArrows[i].newDImg.src = "";
             }
         }   
@@ -56,13 +60,14 @@ function draw() {
                 allArrows[i].y < 15 &&
                 allArrows[i].y > 1
             ) {
-            if (allArrows[i].scores === true ) {
-                score += 1;
+            if (allArrows[i].scores === true && allArrows[i].healths === true) {
+                score += 100;
+                health -= 5;
                 allArrows[i].scores = false;
-                } else {
-                  health -= 1
-                }
+                allArrows[i].healths = false;
+              } 
                 showScore.innerHTML = "Score: " + `${score}`;
+                showHealth.innerHTML = "Enemy's Health:" + `${health}`;
                 allArrows[i].newDImg.src = "";
             }
         }
@@ -72,11 +77,14 @@ function draw() {
                 allArrows[i].y < 15 &&
                 allArrows[i].y > 1
             ) {
-            if (allArrows[i].scores === true) {
-                score += 1;
+            if (allArrows[i].scores === true && allArrows[i].healths === true) {
+                score += 100;
+                health -= 5;
                 allArrows[i].scores = false;
+                allArrows[i].healths = false;
                 }
                 showScore.innerHTML = "Score: " + `${score}`;
+                showHealth.innerHTML = "Enemy's Health:" + `${health}`;
                 allArrows[i].newDImg.src = "";
              }   
         }
@@ -86,11 +94,14 @@ function draw() {
                 allArrows[i].y < 15 &&
                 allArrows[i].y > 1
             ) {
-            if (allArrows[i].scores === true) {
-                score += 1;
+            if (allArrows[i].scores === true && allArrows[i].healths === true) {
+                score += 100;
+                health -= 5;
                 allArrows[i].scores = false;
+                allArrows[i].healths = false;
                 }
                 showScore.innerHTML = "Score: " + `${score}`;
+                showHealth.innerHTML = "Enemy's Health:" + `${health}`;
                 allArrows[i].newDImg.src = "";
              }
         }
@@ -150,7 +161,6 @@ function arrowDraw() {
     return;
   } else {
     if (!paused && health > 0) {
-      console.log(health)
       let randomArrow = arrowNew();
       allArrows.push(randomArrow);
       allArrows[allArrows.length - 1].displayArrow();
@@ -159,18 +169,16 @@ function arrowDraw() {
       let time;
       if (allArrows.length <= 15) {
         time = 500
-        console.log("help",time)
       } else if (allArrows.length <= 30 && allArrows.length > 15) {
         time = Math.floor(Math.random() * (500 - 250 + 1)) + 250;
-         console.log("help2",time)
       } else if (allArrows.length <= 45 && allArrows.length > 30) {
         time = Math.floor(Math.random() * (500 - 150 + 1)) + 150;
-        console.log("help22",time)
       } else  {
          time = Math.floor(Math.random() * (500 - 50 + 1)) + 50
-         console.log("help3",time)
       }
       timeout = setTimeout(arrowDraw, time);
+    } else if (health <=0) {
+      endGame()
     } else {
       for (let i = 0; i < allArrows.length; i++) {
         allArrows[i].dy = 0;
@@ -207,6 +215,12 @@ function startGame() {
   setInterval(draw, 1);
 }
 
+function endGame() {
+  firstModal.style.visibility = "visible";
+  lastModal.style.display = "flex";
+  gameover = true;
+}
+
 function displayDirections() {
   startModal.style.display = "none";
   directionModal.style.zIndex = 10;
@@ -215,7 +229,12 @@ function displayDirections() {
   }
 };
 
-
+function playRestart(){
+  firstModal.style.visibility = "visible";
+  lastModal.style.display = "none";
+  gameover = false;
+  // startGame();
+}
 
 function restartDDr() {
   restart();
@@ -224,15 +243,19 @@ function restartDDr() {
     buttonPlay.style.display = "flex";
     startModal.style.display = "flex";
     firstModal.style.visibility = "visible";
+    playRestart();
   }
 }
 
 function restart() {
   clearTimeout(timeout);
-  restart = true;
+  replay= true;
   pause = false;
+  gameover = false;
+  health = 40;
+  showHealth.innerHTML = "Enemy's Health: " + `${health}`;
   score = 0;
-  scoreDisplay.innerHTML = "Score: " + `${score}`;
+  showScore.innerHTML = "Score: " + `${score}`;
   allArrows = allArrows.map(arrow => {
     arrow.y = canvas.height;
     arrow.dy = 0;

@@ -14,17 +14,23 @@
         <div id="startModal" class="mdirections">
             <h2>WASD Revolution!</h2>
             <p>Use the WASD keys to play the directions of the arrows corresponds to the direction arrows are pointing.</p>
+            <p>Remake of the original Dance Dance Revolution.</p>
+            <div class= "startbuttonflex">
             <button id="startButton">How to Play?</button>
+            </div>
         </div>
         <div id="lastModal" class="mdirections">
-            <h2>Great Moves!</h2>
+            <h2>You have depleted enemy's HP, You Won!</h2>
             <button id="restartButton">Restart</button>
         </div>
     </span>
     <div class="title">WASD Revolution</div>
     <section class="gamecanvas">
         <canvas id="game-canvas" width="800" height="750"></canvas>
-        <div id="score">Score: 0</div>
+        <div class="score-health">
+            <div id="score">Score: 0</div>
+            <div id="health">Enemy's Health: 300</div>
+        </div>
         <div class="source">
             <a href="https://github.com/chrisaugust29/WASDRevolution"><img src="../src/assets/img/github.png"></a>
             <a href="https://www.linkedin.com/in/christopher-low-99a557a3"><img src="../src/assets/img/linkedin.png"></a>
@@ -40,9 +46,12 @@
             <li>-Play using the WASD Keys which acts as directional keys</li>
             <li>-Tap the corresponding key as the moving arrows reach static arrows </li>
             <li>-A score will be displayed of total scores recieved.</li>
+            <li>-Enemy's Hp will start at 300 each time you score enemy's HP will be deducted and when enemy HP is 0 you win!</li>
             <li>-Each missed note you will lose Health and game is over when you reach 0</li>
         </ul>
-        <button id="buttonPlay">Lets Dance!</button>
+        <div class="buttonflex">
+        <button id="buttonPlay">Lets go!</button>
+        </div>
     </div>
     <div class="sArrows">
         <img id="left" src="../src/assets/img/sLeft.png">
