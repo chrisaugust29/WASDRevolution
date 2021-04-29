@@ -20,22 +20,22 @@ class Arrowd {
       case "left":
 		//   "../img/dLeft.png";
         this.newDImg.src = "../src/assets/img/dLeft.png";
-        this.x = 50;
+        this.x = 75;
         break;
       case "down":
 		//   "../img/dDown.png";
         this.newDImg.src = "../src/assets/img/dDown.png";
-        this.x = 200;
+        this.x = 225;
         break;
       case "up":
 		//   "../src/assets/img/dUp.png";
         this.newDImg.src = "../src/assets/img/dUp.png";
-        this.x = 350;
+        this.x = 375;
         break;
       case "right":
 		//   "../src/assets/img/dRight.png";
         this.newDImg.src = "../src/assets/img/dRight.png";
-        this.x = 500;
+        this.x = 525;
         break;
     }
   }
@@ -50,7 +50,7 @@ class Arrowd {
 				0,
 				this.width,
 				this.height,
-				this.x + 25,
+				this.x,
 				this.y,
 				this.width,
 				this.height

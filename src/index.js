@@ -7,7 +7,7 @@ let directionModal = document.getElementById("directionModal");
 let buttonPlay = document.getElementById("buttonPlay");
 let showScore = document.getElementById("score");
 let allArrows = [];
-let health = 50;
+let health = 20;
 let score = 0;
 let leftInput = false;
 let downInput = false;
@@ -38,7 +38,7 @@ function draw() {
     for (let i = 0; i < allArrows.length; i++) {
         if (leftInput) {
             if (
-                allArrows[i].x === 50 &&
+                allArrows[i].x === 75 &&
                 allArrows[i].y < 15 &&
                 allArrows[i].y > 1
             ) {
@@ -53,13 +53,12 @@ function draw() {
         }   
         if (downInput) {
             if (
-                allArrows[i].x === 200 &&
-                allArrows[i].y < 30 &&
+                allArrows[i].x === 225 &&
+                allArrows[i].y < 15 &&
                 allArrows[i].y > 1
             ) {
             if (allArrows[i].scores === true ) {
                 score += 1;
-                health -=1;
                 allArrows[i].scores = false;
                 }
                 showScore.innerHTML = "Score: " + `${score}`;
@@ -68,13 +67,12 @@ function draw() {
         }
         if (upInput) {
             if (
-                allArrows[i].x ===  350 &&
-                allArrows[i].y < 30 &&
+                allArrows[i].x ===  375 &&
+                allArrows[i].y < 15 &&
                 allArrows[i].y > 1
             ) {
             if (allArrows[i].scores === true) {
                 score += 1;
-                health -=1;
                 allArrows[i].scores = false;
                 }
                 showScore.innerHTML = "Score: " + `${score}`;
@@ -83,13 +81,12 @@ function draw() {
         }
         if (rightInput) {
             if (
-                allArrows[i].x === 500 &&
-                allArrows[i].y < 30 &&
+                allArrows[i].x === 525 &&
+                allArrows[i].y < 15 &&
                 allArrows[i].y > 1
             ) {
             if (allArrows[i].scores === true) {
                 score += 1;
-                health -=1;
                 allArrows[i].scores = false;
                 }
                 showScore.innerHTML = "Score: " + `${score}`;
@@ -151,8 +148,8 @@ function arrowDraw() {
   if (gameover || replay) {
     return;
   } else {
-    if (!paused) {
-        console.log("help",allArrows.length)
+    if (!paused && health > 0) {
+      console.log(health)
       let randomArrow = arrowNew();
       allArrows.push(randomArrow);
       allArrows[allArrows.length - 1].displayArrow();
@@ -160,11 +157,17 @@ function arrowDraw() {
          = -4));
       let time;
       if (allArrows.length <= 15) {
-        time = 600;
+        time = 500
+        console.log("help",time)
       } else if (allArrows.length <= 30 && allArrows.length > 15) {
-        time = Math.floor(Math.random() * (600 - 400 + 1)) + 400;
-      } else {
-        time = Math.floor(Math.random() * (600 - 250 + 1)) + 250;
+        time = Math.floor(Math.random() * (500 - 250 + 1)) + 250;
+         console.log("help2",time)
+      } else if (allArrows.length <= 45 && allArrows.length > 30) {
+        time = Math.floor(Math.random() * (500 - 150 + 1)) + 150;
+        console.log("help22",time)
+      } else  {
+         time = Math.floor(Math.random() * (500 - 50 + 1)) + 50
+         console.log("help3",time)
       }
       timeout = setTimeout(arrowDraw, time);
     } else {
@@ -206,3 +209,27 @@ function displayDirections() {
     directionModal.style.display = "flex";
   }
 };
+
+function restartDDr() {
+  restart();
+  if (replay === true) {
+    replay = false;
+    buttonPlay.style.display = "flex";
+    startModal.style.display = "flex";
+    firstModal.style.visibility = "visible";
+  }
+}
+
+function restart() {
+  clearTimeout(arrowDrawTimeout);
+  restart = true;
+  pause = false;
+  clearNumbers();
+  mainSong.pause();
+  mainSong.currentTime = 0;
+  arrowArray = arrowArray.map(arrow => {
+    arrow.y = canvas.height;
+    arrow.dy = 0;
+  });
+  arrowArray = [];
+}
