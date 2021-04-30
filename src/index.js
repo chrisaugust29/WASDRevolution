@@ -9,8 +9,10 @@ let showScore = document.getElementById("score");
 let showHealth = document.getElementById("health");
 let showMyHealth = document.getElementById("myhealth");
 let hitMsg = document.getElementById("hit-message")
+let drawn = true;
 let allArrows = [];
-let health = 20;
+let health = 200;
+let myhp = 100;
 let score = 0;
 let leftInput = false;
 let downInput = false;
@@ -35,63 +37,105 @@ document.addEventListener("keyup", handleKeyPress);
 
 
 function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    staticShowArrows();
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  staticShowArrows();
 
-    for (let i = 0; i < allArrows.length; i++) {
-        if (leftInput) {
-            if (
-                allArrows[i].x === 75 &&
-                allArrows[i].y < 15 &&
-                allArrows[i].y > 1
-            ) {
-            if (allArrows[i].scores === true && allArrows[i].healths === true) {
-                score += 100;
-                health -= 5
-                allArrows[i].scores = false;
-                allArrows[i].healths = false;
-                hitMsg.className = "great";
-                setTimeout(() => {hitMsg.className = ""; }, 500);
-                hitMsg.innerText = "5 DMG NICE!";
-                setTimeout(() => {hitMsg.innerText = ""; }, 500);
-            }
-                showScore.innerHTML = "Score: " + `${score}`;
-                showHealth.innerHTML = "Enemy's Health:" + `${health}`;
-                allArrows[i].newDImg.src = "";
-            }
-        }   
-        if (downInput) {
-            if (
-                allArrows[i].x === 225 &&
-                allArrows[i].y < 15 &&
-                allArrows[i].y > 1
-            ) {
-            if (allArrows[i].scores === true && allArrows[i].healths === true) {
-                score += 100;
-                health -= 5;
-                allArrows[i].scores = false;
-                allArrows[i].healths = false;
-                hitMsg.className = "great";
-                setTimeout(() => {hitMsg.className = ""; }, 500);
-                hitMsg.innerText = "5 DMG NICE!";
-                setTimeout(() => {hitMsg.innerText = ""; }, 500);
+  for (let i = 0; i < allArrows.length; i++) {
+    
+    if (allArrows[i].hit === false) {
+      
+          if (leftInput) {
+              if (
+                  allArrows[i].x === 75 &&
+                  allArrows[i].y < 15 &&
+                  allArrows[i].y > 1
+              ) {
+              if (allArrows[i].scores === true && allArrows[i].healths === true ) {
+                  score += 100;
+                  health -= 5;
+                  allArrows[i].scores = false;
+                  allArrows[i].healths = false;
+                  allArrows[i].hit = true;
+                  allArrows[i].myhps = false;
+                  hitMsg.className = "great";
+                  setTimeout(() => {hitMsg.className = ""; }, 500);
+                  hitMsg.innerText = "5 DMG NICE!";
+                  setTimeout(() => {hitMsg.innerText = ""; }, 500);
               } 
-                showScore.innerHTML = "Score: " + `${score}`;
-                showHealth.innerHTML = "Enemy's Health:" + `${health}`;
-                allArrows[i].newDImg.src = "";
+              showScore.innerHTML = "Score: " + `${score}`;
+              showHealth.innerHTML = "Enemy's Health:" + `${health}`;
+              showMyHealth.innerHTML = "HP:" + `${myhp}`
+              allArrows[i].newDImg.src = "";
             }
-        }
-        if (upInput) {
-            if (
-                allArrows[i].x ===  375 &&
-                allArrows[i].y < 15 &&
-                allArrows[i].y > 1
-            ) {
-            if (allArrows[i].scores === true && allArrows[i].healths === true) {
+          } 
+           if (!leftInput) {
+              if (
+                  allArrows[i].x === 75 &&
+                  allArrows[i].y < 15 &&
+                  allArrows[i].y > 1
+              ){
+              if (allArrows[i].myhps === true)
+         
+                myhp -= 10 
+                allArrows.splice(i,1)
+                // allArrows[i].mhps = false;
+              }
+               showMyHealth.innerHTML = "HP:" + `${myhp}`
+            }
+            
+         if (downInput) {
+              if (
+                  allArrows[i].x === 225 &&
+                  allArrows[i].y < 15 &&
+                  allArrows[i].y > 1
+              ) {
+              if (allArrows[i].scores === true && allArrows[i].healths === true) {
+                  score += 100;
+                  health -= 5;
+                  myhp += 0;
+                  allArrows[i].scores = false;
+                  allArrows[i].healths = false;
+                  allArrows[i].myhps = false;
+                  allArrows[i].hit == true;
+                  hitMsg.className = "great";
+                  setTimeout(() => {hitMsg.className = ""; }, 500);
+                  hitMsg.innerText = "5 DMG NICE!";
+                  setTimeout(() => {hitMsg.innerText = ""; }, 500);
+                } 
+                  showScore.innerHTML = "Score: " + `${score}`;
+                  showHealth.innerHTML = "Enemy's Health:" + `${health}`;
+                  showMyHealth.innerHTML = "HP:" + `${myhp}`
+                  allArrows[i].newDImg.src = "";
+              }
+          }
+          if (!downInput) {
+              if (
+                  allArrows[i].x === 225 &&
+                  allArrows[i].y < 15 &&
+                  allArrows[i].y > 1
+              ){
+              if (allArrows[i].myhps === true)
+         
+                myhp -= 10 
+                allArrows.splice(i,1)
+                // allArrows[i].mhps = false;
+              }
+               showMyHealth.innerHTML = "HP:" + `${myhp}`
+            }
+          if (upInput) {
+              if (
+                  allArrows[i].x ===  375 &&
+                  allArrows[i].y < 15 &&
+                  allArrows[i].y > 1
+              ) {
+              if (allArrows[i].scores === true && allArrows[i].healths === true) {
                 score += 100;
                 health -= 5;
+                myhp += 0;
                 allArrows[i].scores = false;
                 allArrows[i].healths = false;
+                allArrows[i].hit == true;
+                allArrows[i].myhps = false;
                 hitMsg.className = "great";
                 setTimeout(() => {hitMsg.className = ""; }, 500);
                 hitMsg.innerText = "5 DMG NICE!";
@@ -99,20 +143,38 @@ function draw() {
                 }
                 showScore.innerHTML = "Score: " + `${score}`;
                 showHealth.innerHTML = "Enemy's Health:" + `${health}`;
+                showMyHealth.innerHTML = "HP:" + `${myhp}`
                 allArrows[i].newDImg.src = "";
-             }   
-        }
-        if (rightInput) {
-            if (
-                allArrows[i].x === 525 &&
-                allArrows[i].y < 15 &&
-                allArrows[i].y > 1
-            ) {
-            if (allArrows[i].scores === true && allArrows[i].healths === true) {
+              }   
+            }
+            if (!upInput) {
+              if (
+                  allArrows[i].x === 375 &&
+                  allArrows[i].y < 15 &&
+                  allArrows[i].y > 1
+              ){
+              if (allArrows[i].myhps === true)
+         
+                myhp -= 10 
+                allArrows.splice(i,1)
+                // allArrows[i].mhps = false;
+              }
+               showMyHealth.innerHTML = "HP:" + `${myhp}`
+            }
+            if (rightInput) {
+              if (
+                  allArrows[i].x === 525 &&
+                  allArrows[i].y < 15 &&
+                  allArrows[i].y > 1
+              ) {
+              if (allArrows[i].scores === true && allArrows[i].healths === true) {
                 score += 100;
                 health -= 5;
+                myhp += 0;
                 allArrows[i].scores = false;
                 allArrows[i].healths = false;
+                allArrows[i].hit == true;
+                allArrows[i].myhps = false;
                 hitMsg.className = "great";
                 setTimeout(() => {hitMsg.className = ""; }, 500);
                 hitMsg.innerText = "5 DMG NICE!";
@@ -120,17 +182,55 @@ function draw() {
                 }
                 showScore.innerHTML = "Score: " + `${score}`;
                 showHealth.innerHTML = "Enemy's Health:" + `${health}`;
+                showMyHealth.innerHTML = "HP:" + `${myhp}`
                 allArrows[i].newDImg.src = "";
-             }
-        }
+              }
+            }
+            if (!rightInput) {
+              if (
+                  allArrows[i].x === 525 &&
+                  allArrows[i].y < 15 &&
+                  allArrows[i].y > 1
+              ){
+              if (allArrows[i].myhps === true)
+         
+                myhp -= 10 
+                allArrows.splice(i,1)
+                // allArrows[i].mhps = false;
+              }
+               showMyHealth.innerHTML = "HP:" + `${myhp}`
+            }
+          // if arrow == tru
+    } else if (allArrows[i].hit === false && allArrows[i].myhps === true) { 
+    
+      // if ( allArrows[i].hit === false && allArrows[i].y <= 0 ) {
+        myhp -= 10 ;
+        allArrows[i].myhps = false;
+        // allArrows[i].hit = true;
+        hitMsg.className = "bad";
+        setTimeout(() => {hitMsg.className = ""; }, 500);
+        hitMsg.innerText = "-10 HP MISSED!";
+        setTimeout(() => {hitMsg.innerText = ""; }, 500)
+      // }
+      showMyHealth.innerHTML = "HP: " + `${myhp}`;
+      showScore.innerHTML = "Score: " + `${score}`;
+      showHealth.innerHTML = "Enemy's Health:" + `${health}`;
+      allArrows[i].newDImg.src = "";
+      
     }
+  } 
+  
+  setTimeout(()=> {
+    draw()
+  },10)
 }
 
+
 function handleKeyPress(e) {
-     console.log(e.key);
+   
   switch (e.keyCode) {
       case 65:
-      leftInput = !leftInput;
+      leftInput = !leftInput; 
       break;
     case 87:
       upInput = !upInput;
@@ -178,7 +278,7 @@ function arrowDraw() {
   if (gameover || replay) {
     return;
   } else {
-    if (!paused && health > 0) {
+    if (!paused && health >0) {
       let randomArrow = arrowNew();
       allArrows.push(randomArrow);
       allArrows[allArrows.length - 1].displayArrow();
@@ -195,7 +295,7 @@ function arrowDraw() {
          time = Math.floor(Math.random() * (500 - 50 + 1)) + 50
       }
       timeout = setTimeout(arrowDraw, time);
-    } else if (health <=0) {
+    } else if (health <=0 ) {
       endGame()
     } else {
       for (let i = 0; i < allArrows.length; i++) {
@@ -230,7 +330,9 @@ function startGame() {
     directionModal.style.display = "none";
   }
   arrowDraw();
-  setInterval(draw, 1);
+  drawn = false;
+  draw();
+  // setInterval(draw, 1);
 }
 
 function endGame() {
@@ -270,7 +372,7 @@ function restart() {
   replay= true;
   pause = false;
   gameover = false;
-  health = 40;
+  health = 200;
   showHealth.innerHTML = "Enemy's Health: " + `${health}`;
   score = 0;
   showScore.innerHTML = "Score: " + `${score}`;

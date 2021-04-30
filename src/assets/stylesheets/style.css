@@ -57,8 +57,14 @@ section {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   font-size: 30px;
-  float: right;
  
+}
+
+#myhealth {
+  color: red;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 30px;
 }
 
 .hit-miss {
@@ -71,7 +77,13 @@ section {
   font-size: 60px;
   font-weight: bolder;
 }
+.bad {
+   z-index: 5;
+  color: red;
+  font-size: 60px;
+  font-weight: bolder;
 
+}
 .title {
   display: none;
 }
@@ -79,7 +91,7 @@ section {
 /* modals */
 p {
     margin-block-start: 1em;
-    margin-block-end: 1em;
+    margin-block-end: 1em;    
     margin-inline-start: 0px;
     margin-inline-end: 0px;
 }
