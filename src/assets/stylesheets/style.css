@@ -100,11 +100,30 @@ p {
 #lastModal {
 	display: none;
 }
+
+
+#lastModal2 {
+	display: none;
+}
+
 .startModal {
   display: none;
 }
 
 .mdirections {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    width: 80%;
+    padding: 8% 4%;
+    border: 3px solid white;
+    border-radius: 4pxx;
+    background-color: black;
+    z-index: 10;
+}
+.mdirections2 {
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -147,6 +166,22 @@ p {
   border-radius: 3px;
   padding: 8px;
 
+}
+
+
+#lastModal2 {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  position: fixed;
+  top: calc(50vh - 175px);
+  left: calc(50vw - 150px);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: 3px solid white;
+  border-radius: 3px;
+  padding: 8px;
 }
 
 #directionModal {

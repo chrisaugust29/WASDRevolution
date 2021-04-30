@@ -78,7 +78,10 @@ function draw() {
          
                 myhp -= 10 
                 allArrows.splice(i,1)
-                // allArrows[i].mhps = false;
+                hitMsg.className = "bad";
+                setTimeout(() => {hitMsg.className = ""; }, 500);
+                hitMsg.innerText = "MISSED -10 HP!";
+                setTimeout(() => {hitMsg.innerText = ""; }, 500);
               }
                showMyHealth.innerHTML = "HP:" + `${myhp}`
             }
@@ -118,7 +121,10 @@ function draw() {
          
                 myhp -= 10 
                 allArrows.splice(i,1)
-                // allArrows[i].mhps = false;
+                hitMsg.className = "bad";
+                setTimeout(() => {hitMsg.className = ""; }, 500);
+                hitMsg.innerText = "MISSED -10 HP!";
+                setTimeout(() => {hitMsg.innerText = ""; }, 500);
               }
                showMyHealth.innerHTML = "HP:" + `${myhp}`
             }
@@ -157,7 +163,10 @@ function draw() {
          
                 myhp -= 10 
                 allArrows.splice(i,1)
-                // allArrows[i].mhps = false;
+                hitMsg.className = "bad";
+                setTimeout(() => {hitMsg.className = ""; }, 500);
+                hitMsg.innerText = "MISSED -10 HP!";
+                setTimeout(() => {hitMsg.innerText = ""; }, 500);
               }
                showMyHealth.innerHTML = "HP:" + `${myhp}`
             }
@@ -196,33 +205,33 @@ function draw() {
          
                 myhp -= 10 
                 allArrows.splice(i,1)
-                // allArrows[i].mhps = false;
+                hitMsg.className = "bad";
+                setTimeout(() => {hitMsg.className = ""; }, 500);
+                hitMsg.innerText = "MISSED -10 HP!";
+                setTimeout(() => {hitMsg.innerText = ""; }, 500);
               }
                showMyHealth.innerHTML = "HP:" + `${myhp}`
             }
           // if arrow == tru
-    } else if (allArrows[i].hit === false && allArrows[i].myhps === true) { 
+    } 
+      //   else if (allArrows[i].hit === false && allArrows[i].myhps === true) { 
     
-      // if ( allArrows[i].hit === false && allArrows[i].y <= 0 ) {
-        myhp -= 10 ;
-        allArrows[i].myhps = false;
-        // allArrows[i].hit = true;
-        hitMsg.className = "bad";
-        setTimeout(() => {hitMsg.className = ""; }, 500);
-        hitMsg.innerText = "-10 HP MISSED!";
-        setTimeout(() => {hitMsg.innerText = ""; }, 500)
+      // // if ( allArrows[i].hit === false && allArrows[i].y <= 0 ) {
+      //   myhp -= 10 ;
+      //   allArrows[i].myhps = false;
+      //   // allArrows[i].hit = true;
+      //   hitMsg.className = "bad";
+      //   setTimeout(() => {hitMsg.className = ""; }, 500);
+      //   hitMsg.innerText = "-10 HP MISSED!";
+      //   setTimeout(() => {hitMsg.innerText = ""; }, 500)
       // }
       showMyHealth.innerHTML = "HP: " + `${myhp}`;
       showScore.innerHTML = "Score: " + `${score}`;
       showHealth.innerHTML = "Enemy's Health:" + `${health}`;
-      allArrows[i].newDImg.src = "";
-      
-    }
-  } 
-  
-  setTimeout(()=> {
-    draw()
-  },10)
+    //   allArrows[i].newDImg.src = "";
+
+  } setTimeout(()=> {
+      draw()},10)
 }
 
 
@@ -278,7 +287,7 @@ function arrowDraw() {
   if (gameover || replay) {
     return;
   } else {
-    if (!paused && health >0) {
+    if (!paused && health > 0 && myhp > 0) {
       let randomArrow = arrowNew();
       allArrows.push(randomArrow);
       allArrows[allArrows.length - 1].displayArrow();
@@ -286,17 +295,19 @@ function arrowDraw() {
          = -4));
       let time;
       if (allArrows.length <= 15) {
-        time = 500
+        time = 600
       } else if (allArrows.length <= 30 && allArrows.length > 15) {
-        time = Math.floor(Math.random() * (500 - 250 + 1)) + 250;
+        time = Math.floor(Math.random() * (600 - 400+ 1)) + 400;
       } else if (allArrows.length <= 45 && allArrows.length > 30) {
-        time = Math.floor(Math.random() * (500 - 150 + 1)) + 150;
+        time = Math.floor(Math.random() * (600 - 250 + 1)) + 250;
       } else  {
          time = Math.floor(Math.random() * (500 - 50 + 1)) + 50
       }
       timeout = setTimeout(arrowDraw, time);
     } else if (health <=0 ) {
       endGame()
+    } else if (myhp <= 0 ) {
+      youLost()
     } else {
       for (let i = 0; i < allArrows.length; i++) {
         allArrows[i].dy = 0;
@@ -341,6 +352,13 @@ function endGame() {
   gameover = true;
 }
 
+function youLost() {
+  firstModal.style.visibility = "visible";
+  lastModal2.style.display = "flex";
+  gameover = true;
+
+}
+
 function displayDirections() {
   startModal.style.display = "none";
   directionModal.style.zIndex = 10;
@@ -352,6 +370,7 @@ function displayDirections() {
 function playRestart(){
   firstModal.style.visibility = "visible";
   lastModal.style.display = "none";
+  lastModal2.style.display ="none";
   gameover = false;
   // startGame();
 }
@@ -373,6 +392,8 @@ function restart() {
   pause = false;
   gameover = false;
   health = 200;
+  myhp = 100;
+  showMyHealth.innerHTML = "HP:" + `${myhp}`;
   showHealth.innerHTML = "Enemy's Health: " + `${health}`;
   score = 0;
   showScore.innerHTML = "Score: " + `${score}`;
