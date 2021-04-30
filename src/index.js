@@ -7,6 +7,7 @@ let directionModal = document.getElementById("directionModal");
 let buttonPlay = document.getElementById("buttonPlay");
 let showScore = document.getElementById("score");
 let showHealth = document.getElementById("health");
+let showMyHealth = document.getElementById("myhealth");
 let hitMsg = document.getElementById("hit-message")
 let allArrows = [];
 let health = 20;

@@ -61,9 +61,15 @@ section {
  
 }
 
+.hit-miss {
+  display: flex ;
+  height: 50px;
+}
 .great {
+  z-index: 5;
   color: #67FCF1;
-  font-weight: 700;
+  font-size: 60px;
+  font-weight: bolder;
 }
 
 .title {
