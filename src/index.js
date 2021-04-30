@@ -8,17 +8,19 @@ let buttonPlay = document.getElementById("buttonPlay");
 let showScore = document.getElementById("score");
 let showHealth = document.getElementById("health");
 let showMyHealth = document.getElementById("myhealth");
-let hitMsg = document.getElementById("hit-message")
+let hitMsg = document.getElementById("hit-message");
+let song = document.getElementById("song");
+let pauseIcon = document.getElementById("pauseIcon");
 let drawn = true;
 let allArrows = [];
 let health = 200;
 let myhp = 100;
 let score = 0;
+let pause = false;
 let leftInput = false;
 let downInput = false;
 let upInput = false;
 let rightInput = false;
-let paused = false;
 let replay = false;
 let gameover = false;
 let timeout;
@@ -27,13 +29,15 @@ window.onload = staticShowArrows;
 
 buttonPlay.onclick = startGame;
 // document.getElementById("restartButton").onclick = playAgain;
-// pauseIcon.onclick = pauseGame;
+
 document.getElementById("restartButton").onclick = restartDDr;
 // document.getElementById("mainSong").onended = songEnd
 let styleDirection = window.getComputedStyle(directionModal).getPropertyValue("display");
 document.getElementById("startButton").onclick = displayDirections;
 document.addEventListener("keydown", handleKeyPress);
 document.addEventListener("keyup", handleKeyPress);
+document.getElementById("muteIcon").onclick = toggleMute;
+pauseIcon.onclick = gamePause;
 
 
 function draw() {
@@ -63,7 +67,7 @@ function draw() {
                   setTimeout(() => {hitMsg.innerText = ""; }, 500);
               } 
               showScore.innerHTML = "Score: " + `${score}`;
-              showHealth.innerHTML = "Enemy's Health:" + `${health}`;
+              showHealth.innerHTML = "Enemy's HP:" + `${health}`;
               showMyHealth.innerHTML = "HP:" + `${myhp}`
               allArrows[i].newDImg.src = "";
             }
@@ -106,7 +110,7 @@ function draw() {
                   setTimeout(() => {hitMsg.innerText = ""; }, 500);
                 } 
                   showScore.innerHTML = "Score: " + `${score}`;
-                  showHealth.innerHTML = "Enemy's Health:" + `${health}`;
+                  showHealth.innerHTML = "Enemy's HP:" + `${health}`;
                   showMyHealth.innerHTML = "HP:" + `${myhp}`
                   allArrows[i].newDImg.src = "";
               }
@@ -148,7 +152,7 @@ function draw() {
                 setTimeout(() => {hitMsg.innerText = ""; }, 500);
                 }
                 showScore.innerHTML = "Score: " + `${score}`;
-                showHealth.innerHTML = "Enemy's Health:" + `${health}`;
+                showHealth.innerHTML = "Enemy's HP:" + `${health}`;
                 showMyHealth.innerHTML = "HP:" + `${myhp}`
                 allArrows[i].newDImg.src = "";
               }   
@@ -190,7 +194,7 @@ function draw() {
                 setTimeout(() => {hitMsg.innerText = ""; }, 500);
                 }
                 showScore.innerHTML = "Score: " + `${score}`;
-                showHealth.innerHTML = "Enemy's Health:" + `${health}`;
+                showHealth.innerHTML = "Enemy's HP:" + `${health}`;
                 showMyHealth.innerHTML = "HP:" + `${myhp}`
                 allArrows[i].newDImg.src = "";
               }
@@ -227,7 +231,7 @@ function draw() {
       // }
       showMyHealth.innerHTML = "HP: " + `${myhp}`;
       showScore.innerHTML = "Score: " + `${score}`;
-      showHealth.innerHTML = "Enemy's Health:" + `${health}`;
+      showHealth.innerHTML = "Enemy's Hp:" + `${health}`;
     //   allArrows[i].newDImg.src = "";
 
   } setTimeout(()=> {
@@ -287,7 +291,7 @@ function arrowDraw() {
   if (gameover || replay) {
     return;
   } else {
-    if (!paused && health > 0 && myhp > 0) {
+    if (!pause && health > 0 && myhp > 0) {
       let randomArrow = arrowNew();
       allArrows.push(randomArrow);
       allArrows[allArrows.length - 1].displayArrow();
@@ -340,12 +344,25 @@ function startGame() {
   if (styleDirection === "none") {
     directionModal.style.display = "none";
   }
+  song.play();
+  song.currentTime = 1;
   arrowDraw();
   drawn = false;
   draw();
   // setInterval(draw, 1);
 }
 
+
+function gamePause() {
+  pause = !pause;
+  if (pause) {
+    song.pause();
+    pauseIcon.src = "./assets/img/pause.png";
+  } else {
+    song.play();
+    pauseIcon.src = "./assets/img/pause.png";
+  }
+}
 function endGame() {
   firstModal.style.visibility = "visible";
   lastModal.style.display = "flex";
@@ -385,6 +402,9 @@ function restartDDr() {
     playRestart();
   }
 }
+function toggleMute() {
+  song.muted = !song.muted;
+}
 
 function restart() {
   clearTimeout(timeout);
@@ -393,6 +413,8 @@ function restart() {
   gameover = false;
   health = 200;
   myhp = 100;
+  song.pause();
+  song.currentTime = 0;
   showMyHealth.innerHTML = "HP:" + `${myhp}`;
   showHealth.innerHTML = "Enemy's Health: " + `${health}`;
   score = 0;

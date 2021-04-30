@@ -20,8 +20,15 @@ section {
 
 #game-canvas {
 
-	/* border: 1px solid white; */
-	text-align: center;
+  /* border: 1px solid white; */
+
+ margin-top: 50px;
+ /* position: absolute; */
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  left: 0;
+  right: 0;
 }
 
 .sArrows {
@@ -39,9 +46,11 @@ section {
   
 /* score box */
 .score-health {
+  margin-left: 150px;
+  margin-top: 50px;
   display: flex;
   justify-content: space-between;
-  width: 800px;
+  width: 650px;
 }
 
 #score {
@@ -280,3 +289,19 @@ button:hover {
   background-color: gray;
 } 
 
+.controls {
+  top: 15px;
+  right: -75px;
+  display: flex;
+  flex-direction: column;
+}
+
+.controls img {
+  border-radius: 50%;
+  background-color: var(--white);
+  width: 45px;
+  height: 45px;
+  margin: 5px 0;
+  border: 1px solid var(--white);
+  cursor: pointer;
+}
