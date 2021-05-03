@@ -79,15 +79,18 @@ section {
 .hit-miss {
   display: flex ;
   height: 50px;
+  margin-left: 25px;
 }
 .great {
   z-index: 5;
+  margin-left: 30px;
   color: #67FCF1;
   font-size: 60px;
   font-weight: bolder;
 }
 .bad {
    z-index: 5;
+   margin-left: 30px;
   color: red;
   font-size: 60px;
   font-weight: bolder;
@@ -99,6 +102,7 @@ section {
 
 /* modals */
 p {
+  margin-top: -10px;
     margin-block-start: 1em;
     margin-block-end: 1em;    
     margin-inline-start: 0px;
@@ -152,7 +156,6 @@ p {
   align-items: center;
   width: 350px;
   position: fixed;
-  top: calc(50vh - 175px);
   left: calc(50vw - 150px);
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
@@ -201,6 +204,7 @@ p {
   width: 350px;
   position: fixed;
   background-color: rgba(0, 0, 0, 0.5);
+  left: calc(50vw - 150px);
   color: white;
   border: 3px solid white;
   border-radius: 3px;
@@ -212,7 +216,9 @@ p {
   font-size: 30px;
   font-weight: bold;
   color: red;
+  margin-top: 20px;
   font: bold;
+  border-bottom: 3px solid white;
   text-align: center;
  
 }
@@ -298,10 +304,14 @@ button:hover {
 
 .controls img {
   border-radius: 50%;
-  background-color: var(--white);
+  background-color: white;
   width: 45px;
   height: 45px;
   margin: 5px 0;
-  border: 1px solid var(--white);
+  border: 1px solid white;
   cursor: pointer;
 }
+
+/* .displayButtons  {
+  border-radius:;
+} */

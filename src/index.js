@@ -13,7 +13,7 @@ let song = document.getElementById("song");
 let pauseIcon = document.getElementById("pauseIcon");
 let drawn = true;
 let allArrows = [];
-let health = 200;
+let health = 100;
 let myhp = 100;
 let score = 0;
 let pause = false;
@@ -357,10 +357,10 @@ function gamePause() {
   pause = !pause;
   if (pause) {
     song.pause();
-    pauseIcon.src = "./assets/img/pause.png";
+    // pauseIcon.src = "./assets/img/pause.png";
   } else {
     song.play();
-    pauseIcon.src = "./assets/img/pause.png";
+    // pauseIcon.src = "./assets/img/pause.png";
   }
 }
 function endGame() {
