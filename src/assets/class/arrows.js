@@ -22,22 +22,22 @@ class Arrowd {
     switch (dir) {
       case "left":
 		//   "../img/dLeft.png";
-        this.newDImg.src = "../src/assets/img/dLeft.png";
+        this.newDImg.src = "./src/assets/img/dLeft.png";
         this.x = 75;
         break;
       case "down":
 		//   "../img/dDown.png";
-        this.newDImg.src = "../src/assets/img/dDown.png";
+        this.newDImg.src = "./src/assets/img/dDown.png";
         this.x = 225;
         break;
       case "up":
 		//   "../src/assets/img/dUp.png";
-        this.newDImg.src = "../src/assets/img/dUp.png";
+        this.newDImg.src = "./src/assets/img/dUp.png";
         this.x = 375;
         break;
       case "right":
 		//   "../src/assets/img/dRight.png";
-        this.newDImg.src = "../src/assets/img/dRight.png";
+        this.newDImg.src = "./src/assets/img/dRight.png";
         this.x = 525;
         break;
     }
