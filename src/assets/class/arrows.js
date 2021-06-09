@@ -9,7 +9,8 @@ class Arrowd {
 		this.dy = 0;
 		this.scores = true;
 		this.healths = true;
-		this.myhps= true;
+		this.myhps = true;
+		this.hit = false;
 		this.displayArrow = this.displayArrow.bind(this);
 		this.arrowDirection(dir);
 	// 	this.ctx = document.getElementById("game-canvas").getContext("2d")
@@ -21,22 +22,22 @@ class Arrowd {
     switch (dir) {
       case "left":
 		//   "../img/dLeft.png";
-        this.newDImg.src = "../src/assets/img/dLeft.png";
+        this.newDImg.src = "./src/assets/img/dLeft.png";
         this.x = 75;
         break;
       case "down":
 		//   "../img/dDown.png";
-        this.newDImg.src = "../src/assets/img/dDown.png";
+        this.newDImg.src = "./src/assets/img/dDown.png";
         this.x = 225;
         break;
       case "up":
 		//   "../src/assets/img/dUp.png";
-        this.newDImg.src = "../src/assets/img/dUp.png";
+        this.newDImg.src = "./src/assets/img/dUp.png";
         this.x = 375;
         break;
       case "right":
 		//   "../src/assets/img/dRight.png";
-        this.newDImg.src = "../src/assets/img/dRight.png";
+        this.newDImg.src = "./src/assets/img/dRight.png";
         this.x = 525;
         break;
     }
