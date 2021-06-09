@@ -10,6 +10,7 @@
         <!-- <script type="application/javascript" src="./bundle.js"></script> -->
     
 </head>
+
 <body>
     
     <span id="firstModal">
@@ -22,7 +23,7 @@
             </div>
         </div>
         <div id="lastModal" class="mdirections">
-            <h2>You have depleted enemy's HP, You Won!</h2>
+            <h2>Game Over Play Again?</h2>
             <button id="restartButton">Restart</button>
         </div>
         <div id="lastModal2" class="mdirections">
@@ -30,38 +31,54 @@
             <button id="restartButton">Restart</button>
         </div>
     </span>
-    <div class="title">WASD Revolution</div>
-    <div class="controls">
-        <img id="muteIcon" src="./src/assets/img/sound.png">
-        <img id="pauseIcon" src="./src/assets/img/pause.png">
-    </div>   
-    <section class="gamecanvas">
-        
-        <canvas id="game-canvas" width="800" height="750"></canvas>
-        <div class="score-health">
-            <div id="myhealth">Hp: 100</div>
-            <div id="score">Score: 0</div>
-            <div id="health">Enemy's Hp: 300</div>
-        </div>
-        
-        
-        <div class="hit-miss">
-            <h1 id="hit-message" class=""></h1>
-        </div>
-        <div class="source">
-            <a href="https://github.com/chrisaugust29/WASDRevolution"><img src="./src/assets/img/github.png"></a>
-            <a href="https://www.linkedin.com/in/christopher-low-99a557a3"><img src="./src/assets/img/linkedin.png"></a>
-        </div>
     
-    </section>
+    <div class="gameholder">
+        <div class="title">WASD REVOLUTION!</div>
+        <section class="gamecanvas">
+            
+            <canvas id="game-canvas" width="800" height="750"></canvas>
+            <div class="score-health">
+                <div id="myhealth">Hp: 100</div>
+                <div id="score">Score: 0</div>
+                <div id="health">Enemy's Hp: 300</div>
+            </div>
+            
+            
+            <div class="hit-miss">
+                <h1 id="hit-message" class=""></h1>
+            </div>
+            <!-- <div class="source">
+                <a href="https://github.com/chrisaugust29/WASDRevolution"><img src="./src/assets/img/github.png"></a>
+                <a href="https://www.linkedin.com/in/christopher-low-99a557a3"><img src="./src/assets/img/linkedin.png"></a>
+            </div> -->
+        <div class="controls">
+            <img id="muteIcon" src="./src/assets/img/sound.png">
+            <img id="pauseIcon" src="./src/assets/img/pause.png">
+            <a href="https://www.linkedin.com/in/christopher-low-99a557a3"><img src="./src/assets/img/linkedin.png"></a>
+            <a href="https://github.com/chrisaugust29/WASDRevolution"><img src="./src/assets/img/github.png"></a>
+        </div>
+        </section>
+        <div id="direct">
+            <h4>How To Play</h4>
+            <ul>
+                <li>-Play using the WASD Keys which acts as directional keys</li>
+                <li>-Tap the corresponding key as the moving arrows reach static arrows </li>
+                <li>-A score will be displayed of total scores recieved.</li>
+                <li>-Enemy's Hp will start at 200 each time you score enemy's HP will be deducted and when enemy HP is 0 you win!
+                </li>
+                <li>-Each missed note you will lose Health and game is over when you reach 0</li>
+            </ul>
 
+        </div>
+    </div>
+    
     <div id="directionModal">
         <h2>Directions</h2>
         <ul>
             <li>-Play using the WASD Keys which acts as directional keys</li>
             <li>-Tap the corresponding key as the moving arrows reach static arrows </li>
             <li>-A score will be displayed of total scores recieved.</li>
-            <li>-Enemy's Hp will start at 300 each time you score enemy's HP will be deducted and when enemy HP is 0 you win!</li>
+            <li>-Enemy's Hp will start at 200 each time you score enemy's HP will be deducted and when enemy HP is 0 you win!</li>
             <li>-Each missed note you will lose Health and game is over when you reach 0</li>
         </ul>
         <div class="buttonflex">

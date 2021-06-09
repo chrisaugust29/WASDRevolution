@@ -11,13 +11,38 @@ body {
 
 section {
   position: relative;
-  width: 45vw;
+  /* width: 40vw; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
+.gameholder{
+  display: flex;
+  flex-direction: row;
+}
+
+#direct {
+    /* display: flex;
+    width: 20vw; */
+    margin-left: 3%;
+    width: 600px;
+    margin-top: 25%;
+    position: static;
+    color: white;
+}
+
+#direct h4 {
+  font-size: 50px;
+  animation: color-change 1s infinite;
+  color: white;
+}
+
+#direct li {
+  font-size: 20px;
+  margin-top: 20px;
+}
 #game-canvas {
 
   /* border: 1px solid white; */
@@ -25,7 +50,7 @@ section {
  margin-top: 50px;
  /* position: absolute; */
   margin-left: auto;
-  margin-right: auto;
+  /* margin-right: auto; */
   text-align: center;
   left: 0;
   right: 0;
@@ -46,40 +71,44 @@ section {
   
 /* score box */
 .score-health {
-  margin-left: 150px;
+  font-family: Impact, "Jazz LET", fantasy;
+  /* margin-left: 150px; */
   margin-top: 50px;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  width: 650px;
+  width: 800px;
 }
 
 #score {
   color: white;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Impact, "Jazz LET", fantasy;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 50px;
 
 }
 
 #health {
   color: red;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Impact, "Jazz LET", fantasy;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 50px;
  
 }
 
 #myhealth {
   color: red;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Impact, "Jazz LET", fantasy;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 50px;
 }
 
 .hit-miss {
   display: flex ;
   height: 50px;
-  margin-left: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10px;
 }
 .great {
   z-index: 5;
@@ -97,7 +126,25 @@ section {
 
 }
 .title {
-  display: none;
+    height: 40px;
+    /* margin-left: auto;
+    margin-right: auto; */
+    margin-top: 20%;
+    padding-top: 25px;
+    padding-bottom: 3px;
+    font-size: 75px;
+    font-family: Impact, "Jazz LET", fantasy;
+    /* word-wrap: break-word; */
+    animation: color-change 1s infinite;
+    color: rgb(50, 205, 76);
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes color-change {
+  0% { color: red; }
+  50% { color: blue; }
+  100% { color: white; }
 }
 
 /* modals */
@@ -109,8 +156,13 @@ p {
     margin-inline-end: 0px;
 }
 
+body {
+  font-family: Impact, "Jazz LET", fantasy;
+}
+
 
 #lastModal {
+  font-family: Impact, "Jazz LET", fantasy;
 	display: none;
 }
 
@@ -201,7 +253,7 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 350px;
+  width: 500px;
   position: fixed;
   background-color: rgba(0, 0, 0, 0.5);
   left: calc(50vw - 150px);
@@ -213,6 +265,7 @@ p {
 
 
 #startModal > h2 {
+  font-family: Impact, "Jazz LET", fantasy;
   font-size: 30px;
   font-weight: bold;
   color: red;
@@ -232,6 +285,7 @@ p {
 
 
 #directionModal > h2 {
+  font-family: Impact, "Jazz LET", fantasy;
   font-size: 30px;
   font-weight: bold;
   color: red;
@@ -244,7 +298,7 @@ p {
 #directionModal ul {
   padding-inline-start: 0;
   flex-wrap: wrap;
-  display: flex;
+ 
   justify-content: center;
    color: white;
   list-style-type: none;
@@ -296,10 +350,12 @@ button:hover {
 } 
 
 .controls {
-  top: 15px;
-  right: -75px;
+  width: 400px;
+  padding-top: 25px;
+  /* right: -75px; */
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .controls img {

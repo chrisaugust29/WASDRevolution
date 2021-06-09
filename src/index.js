@@ -13,7 +13,7 @@ let song = document.getElementById("song");
 let pauseIcon = document.getElementById("pauseIcon");
 let drawn = true;
 let allArrows = [];
-let health = 100;
+let health = 200;
 let myhp = 100;
 let score = 0;
 let pause = false;
@@ -308,10 +308,11 @@ function arrowDraw() {
          time = Math.floor(Math.random() * (500 - 50 + 1)) + 50
       }
       timeout = setTimeout(arrowDraw, time);
-    } else if (health <=0 ) {
+    } else if (health <= 0 ) {
       endGame()
     } else if (myhp <= 0 ) {
-      youLost()
+      // youLost()
+      endGame()
     } else {
       for (let i = 0; i < allArrows.length; i++) {
         allArrows[i].dy = 0;
@@ -372,6 +373,7 @@ function endGame() {
 function youLost() {
   firstModal.style.visibility = "visible";
   lastModal2.style.display = "flex";
+  // lastModal.style.display = "flex";
   gameover = true;
 
 }
@@ -381,7 +383,7 @@ function displayDirections() {
   directionModal.style.zIndex = 10;
   if (styleDirection === "none") {
     directionModal.style.display = "flex";
-  }
+  } 
 };
 
 function playRestart(){
